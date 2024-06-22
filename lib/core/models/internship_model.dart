@@ -1,10 +1,10 @@
 // File: models/job.dart
 
-import 'package:internshala/Models/stipend_Model.dart';
+import 'package:internshala/core/models/stipend_model.dart';
 
-import 'application_status_Model.dart';
-import 'label_Model.dart';
-import 'location_Model.dart';
+import 'application_status_model.dart';
+import 'label_model.dart';
+import 'location_model.dart';
 
 class Job {
   final int id;
