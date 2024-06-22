@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:internshala/data/providers/MainHomeProvider.dart';
+import 'package:internshala/data/providers/internshipProvider.dart';
 import 'package:internshala/presentation/screens/MainHomeScreen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => MainHomeProvider()),
+    ChangeNotifierProvider(create: (_) => InternshipProvider()),
   ], child: MyApp()));
 }
 

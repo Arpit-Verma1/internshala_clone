@@ -25,11 +25,11 @@ class Job {
   final String companyLogo;
   final String type;
   final String url;
-  final bool isInternChallenge;
+  final int isInternChallenge;
   final bool isExternal;
   final bool isActive;
   final DateTime? expiresAt; // Nullable
-  final DateTime? closedAt; // Nullable
+  final String? closedAt; // Nullable
   final String profileName;
   final bool partTime;
   final String startDate;
@@ -39,7 +39,7 @@ class Job {
   final String jobExperience;
   final String experience;
   final DateTime? postedOn; // Nullable
-  final DateTime? applicationDeadline; // Nullable
+  final String? applicationDeadline; // Nullable
   final String expiringIn;
   final String postedByLabel;
   final String postedByLabelType;
@@ -78,7 +78,7 @@ class Job {
   final bool toShowB2bLabel;
   final bool isInternationalJob;
   final bool toShowCoverLetter;
-  final int officeDays;
+  final String officeDays;
 
   Job({
     required this.id,
@@ -156,104 +156,190 @@ class Job {
   });
 
   factory Job.fromJson(Map<String, dynamic> json) {
-    return Job(
-      id: json['id'],
-      title: json['title'],
-      employmentType: json['employment_type'],
-      applicationStatusMessage:
-          ApplicationStatusMessage.fromJson(json['application_status_message']),
-      jobTitle: json['job_title'],
-      workFromHome: json['work_from_home'],
-      segment: json['segment'],
-      segmentLabelValue: json['segment_label_value'],
-      internshipTypeLabelValue: json['internship_type_label_value'],
-      jobSegments: List<String>.from(json['job_segments']),
-      companyName: json['company_name'],
-      companyUrl: json['company_url'],
-      isPremium: json['is_premium'],
-      isPremiumInternship: json['is_premium_internship'],
-      employerName: json['employer_name'],
-      companyLogo: json['company_logo'],
-      type: json['type'],
-      url: json['url'],
-      isInternChallenge: json['is_internchallenge'],
-      isExternal: json['is_external'],
-      isActive: json['is_active'],
-      expiresAt: json['expires_at'] != null
+    try {
+      int id = json['id'] ?? 0;
+      String title = json['title'] ?? '';
+      String employmentType = json['employment_type'] ?? '';
+      ApplicationStatusMessage applicationStatusMessage =
+          ApplicationStatusMessage.fromJson(
+              json['application_status_message'] ?? {});
+      String jobTitle = json['job_title'] ?? '';
+      bool workFromHome = json['work_from_home'] ?? false;
+      String segment = json['segment'] ?? '';
+      String segmentLabelValue = json['segment_label_value'] ?? '';
+      String internshipTypeLabelValue =
+          json['internship_type_label_value'] ?? '';
+      List<String> jobSegments = List<String>.from(json['job_segments'] ?? []);
+      String companyName = json['company_name'] ?? '';
+      String companyUrl = json['company_url'] ?? '';
+      bool isPremium = json['is_premium'] ?? false;
+      bool isPremiumInternship = json['is_premium_internship'] ?? false;
+      String employerName = json['employer_name'] ?? '';
+      String companyLogo = json['company_logo'] ?? '';
+      String type = json['type'] ?? '';
+      String url = json['url'] ?? '';
+      int isInternChallenge = json['is_internchallenge'] ?? 0;
+      bool isExternal = json['is_external'] ?? false;
+      bool isActive = json['is_active'] ?? false;
+      DateTime? expiresAt = json['expires_at'] != null
           ? DateTime.parse(json['expires_at'])
-          : null,
-      closedAt:
-          json['closed_at'] != null ? DateTime.parse(json['closed_at']) : null,
-      profileName: json['profile_name'],
-      partTime: json['part_time'],
-      startDate: json['start_date'],
-      duration: json['duration'],
-      stipend: Stipend.fromJson(json['stipend']),
-      salary: json['salary'],
-      jobExperience: json['job_experience'],
-      experience: json['experience'],
-      postedOn: json['postedOnDateTime'] != null
+          : null;
+      String closedAt = json['closed_at'] ?? '';
+      String profileName = json['profile_name'] ?? '';
+      bool partTime = json['part_time'] ?? false;
+      String startDate = json['start_date'] ?? '';
+      String duration = json['duration'] ?? '';
+      Stipend stipend = Stipend.fromJson(json['stipend'] ?? {});
+      String salary = json['salary'] ?? '';
+      String jobExperience = json['job_experience'] ?? '';
+      String experience = json['experience'] ?? '';
+      DateTime? postedOn = json['postedOnDateTime'] != null
           ? DateTime.fromMillisecondsSinceEpoch(json['postedOnDateTime'] * 1000)
-          : null,
-      applicationDeadline: json['application_deadline'] != null
-          ? DateTime.parse(json['application_deadline'])
-          : null,
-      expiringIn: json['expiring_in'],
-      postedByLabel: json['posted_by_label'],
-      postedByLabelType: json['posted_by_label_type'],
-      locationNames: List<String>.from(json['location_names']),
-      locations: List<Location>.from(
-          json['locations'].map((loc) => Location.fromJson(loc))),
-      startDateComparisonFormat: json['start_date_comparison_format'] != null
-          ? DateTime.parse(json['start_date_comparison_format'])
-          : null,
-      startDate1: json['start_date1'] != null
+          : null;
+      String? applicationDeadline = json['application_deadline'] ?? '';
+      String expiringIn = json['expiring_in'] ?? '';
+      String postedByLabel = json['posted_by_label'] ?? '';
+      String postedByLabelType = json['posted_by_label_type'] ?? '';
+      List<String> locationNames =
+          List<String>.from(json['location_names'] ?? []);
+      List<Location> locations = List<Location>.from(
+          json['locations']?.map((loc) => Location.fromJson(loc)) ?? []);
+      DateTime? startDateComparisonFormat =
+          json['start_date_comparison_format'] != null
+              ? DateTime.parse(json['start_date_comparison_format'])
+              : null;
+      DateTime? startDate1 = json['start_date1'] != null
           ? DateTime.parse(json['start_date1'])
-          : null,
-      startDate2: json['start_date2'] != null
+          : null;
+      DateTime? startDate2 = json['start_date2'] != null
           ? DateTime.parse(json['start_date2'])
-          : null,
-      isPpo: json['is_ppo'],
-      isPpoSalaryDisclosed: json['is_ppo_salary_disclosed'],
-      ppoSalary: json['ppo_salary'],
-      ppoSalary2: json['ppo_salary2'],
-      ppoLabelValue: json['ppo_label_value'],
-      toShowExtraLabel: json['to_show_extra_label'],
-      extraLabelValue: json['extra_label_value'],
-      isExtraLabelBlack: json['is_extra_label_black'],
-      campaignNames: List<String>.from(json['campaign_names']),
-      campaignName: json['campaign_name'],
-      toShowInSearch: json['to_show_in_search'],
-      campaignUrl: json['campaign_url'],
-      campaignStartDateTime: json['campaign_start_date_time'] != null
+          : null;
+      bool isPpo = json['is_ppo'] ?? false;
+      bool isPpoSalaryDisclosed = json['is_ppo_salary_disclosed'] ?? false;
+      String ppoSalary = json['ppo_salary'] ?? '';
+      String ppoSalary2 = json['ppo_salary2'] ?? '';
+      String ppoLabelValue = json['ppo_label_value'] ?? '';
+      bool toShowExtraLabel = json['to_show_extra_label'] ?? false;
+      String extraLabelValue = json['extra_label_value'] ?? '';
+      bool isExtraLabelBlack = json['is_extra_label_black'] ?? false;
+      List<String> campaignNames =
+          List<String>.from(json['campaign_names'] ?? []);
+      String campaignName = json['campaign_name'] ?? '';
+      bool toShowInSearch = json['to_show_in_search'] ?? false;
+      String campaignUrl = json['campaign_url'] ?? '';
+      DateTime? campaignStartDateTime = json['campaign_start_date_time'] != null
           ? DateTime.parse(json['campaign_start_date_time'])
-          : null,
-      campaignLaunchDateTime: json['campaign_launch_date_time'] != null
-          ? DateTime.parse(json['campaign_launch_date_time'])
-          : null,
-      campaignEarlyAccessStartDateTime:
+          : null;
+      DateTime? campaignLaunchDateTime =
+          json['campaign_launch_date_time'] != null
+              ? DateTime.parse(json['campaign_launch_date_time'])
+              : null;
+      DateTime? campaignEarlyAccessStartDateTime =
           json['campaign_early_access_start_date_time'] != null
               ? DateTime.parse(json['campaign_early_access_start_date_time'])
-              : null,
-      campaignEndDateTime: json['campaign_end_date_time'] != null
+              : null;
+      DateTime? campaignEndDateTime = json['campaign_end_date_time'] != null
           ? DateTime.parse(json['campaign_end_date_time'])
-          : null,
-      labels: List<Label>.from(
-          json['labels'].map((label) => Label.fromJson(label))),
-      labelsApp: json['labels_app'],
-      labelsAppInCard: List<String>.from(json['labels_app_in_card']),
-      isCovidWfhSelected: json['is_covid_wfh_selected'],
-      toShowCardMessage: json['to_show_card_message'],
-      message: json['message'],
-      isApplicationCappingEnabled: json['is_application_capping_enabled'],
-      applicationCappingMessage: json['application_capping_message'],
-      overrideMetaDetails: List<String>.from(json['override_meta_details']),
-      eligibleForEasyApply: json['eligible_for_easy_apply'],
-      eligibleForB2bApplyNow: json['eligible_for_b2b_apply_now'],
-      toShowB2bLabel: json['to_show_b2b_label'],
-      isInternationalJob: json['is_international_job'],
-      toShowCoverLetter: json['to_show_cover_letter'],
-      officeDays: json['office_days'],
-    );
+          : null;
+      List<Label> labels = List<Label>.from(
+          json['labels']?.map((label) => Label.fromJson(label)) ?? []);
+      String labelsApp = json['labels_app'] ?? '';
+      List<String> labelsAppInCard =
+          List<String>.from(json['labels_app_in_card'] ?? []);
+      bool isCovidWfhSelected = json['is_covid_wfh_selected'] ?? false;
+      bool toShowCardMessage = json['to_show_card_message'] ?? false;
+      String message = json['message'] ?? '';
+      bool isApplicationCappingEnabled =
+          json['is_application_capping_enabled'] ?? false;
+      String applicationCappingMessage =
+          json['application_capping_message'] ?? '';
+      List<String> overrideMetaDetails =
+          List<String>.from(json['override_meta_details'] ?? []);
+      bool eligibleForEasyApply = json['eligible_for_easy_apply'] ?? false;
+      bool eligibleForB2bApplyNow = json['eligible_for_b2b_apply_now'] ?? false;
+      bool toShowB2bLabel = json['to_show_b2b_label'] ?? false;
+      bool isInternationalJob = json['is_international_job'] ?? false;
+      bool toShowCoverLetter = json['to_show_cover_letter'] ?? false;
+      String officeDays = json['office_days'] ?? '';
+
+      return Job(
+        id: id,
+        title: title,
+        employmentType: employmentType,
+        applicationStatusMessage: applicationStatusMessage,
+        jobTitle: jobTitle,
+        workFromHome: workFromHome,
+        segment: segment,
+        segmentLabelValue: segmentLabelValue,
+        internshipTypeLabelValue: internshipTypeLabelValue,
+        jobSegments: jobSegments,
+        companyName: companyName,
+        companyUrl: companyUrl,
+        isPremium: isPremium,
+        isPremiumInternship: isPremiumInternship,
+        employerName: employerName,
+        companyLogo: companyLogo,
+        type: type,
+        url: url,
+        isInternChallenge: isInternChallenge,
+        isExternal: isExternal,
+        isActive: isActive,
+        expiresAt: expiresAt,
+        closedAt: closedAt,
+        profileName: profileName,
+        partTime: partTime,
+        startDate: startDate,
+        duration: duration,
+        stipend: stipend,
+        salary: salary,
+        jobExperience: jobExperience,
+        experience: experience,
+        postedOn: postedOn,
+        applicationDeadline: applicationDeadline,
+        expiringIn: expiringIn,
+        postedByLabel: postedByLabel,
+        postedByLabelType: postedByLabelType,
+        locationNames: locationNames,
+        locations: locations,
+        startDateComparisonFormat: startDateComparisonFormat,
+        startDate1: startDate1,
+        startDate2: startDate2,
+        isPpo: isPpo,
+        isPpoSalaryDisclosed: isPpoSalaryDisclosed,
+        ppoSalary: ppoSalary,
+        ppoSalary2: ppoSalary2,
+        ppoLabelValue: ppoLabelValue,
+        toShowExtraLabel: toShowExtraLabel,
+        extraLabelValue: extraLabelValue,
+        isExtraLabelBlack: isExtraLabelBlack,
+        campaignNames: campaignNames,
+        campaignName: campaignName,
+        toShowInSearch: toShowInSearch,
+        campaignUrl: campaignUrl,
+        campaignStartDateTime: campaignStartDateTime,
+        campaignLaunchDateTime: campaignLaunchDateTime,
+        campaignEarlyAccessStartDateTime: campaignEarlyAccessStartDateTime,
+        campaignEndDateTime: campaignEndDateTime,
+        labels: labels,
+        labelsApp: labelsApp,
+        labelsAppInCard: labelsAppInCard,
+        isCovidWfhSelected: isCovidWfhSelected,
+        toShowCardMessage: toShowCardMessage,
+        message: message,
+        isApplicationCappingEnabled: isApplicationCappingEnabled,
+        applicationCappingMessage: applicationCappingMessage,
+        overrideMetaDetails: overrideMetaDetails,
+        eligibleForEasyApply: eligibleForEasyApply,
+        eligibleForB2bApplyNow: eligibleForB2bApplyNow,
+        toShowB2bLabel: toShowB2bLabel,
+        isInternationalJob: isInternationalJob,
+        toShowCoverLetter: toShowCoverLetter,
+        officeDays: officeDays,
+      );
+    } catch (e) {
+      print('Error parsing Job: $e');
+      // Handle or rethrow the exception as needed
+      throw Exception('Error parsing Job: $e');
+    }
   }
 }

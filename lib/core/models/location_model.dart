@@ -14,12 +14,13 @@ class Location {
   });
 
   factory Location.fromJson(Map<String, dynamic> json) {
+
     return Location(
-      string: json['string'],
-      link: json['link'],
-      country: json['country'],
-      region: json['region'],
-      locationName: json['locationName'],
+      string: json['string'] ?? "",
+      link: json['link'] ?? "",
+      country: json['country'] ?? "",
+      region: json['region'] ?? "",
+      locationName: json['locationName'] ?? "",
     );
   }
 }
