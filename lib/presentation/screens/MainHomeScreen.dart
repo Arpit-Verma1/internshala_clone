@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:internshala/data/providers/MainHomeProvider.dart';
 import 'package:internshala/presentation/screens/internship_screen.dart';
-import 'package:internshala/presentation/widgets/bottom_bar.dart';
+
 import 'package:provider/provider.dart';
+
+import '../widgets/common/bottom_bar.dart';
 
 class MainHomeScreen extends StatefulWidget {
   const MainHomeScreen({super.key});

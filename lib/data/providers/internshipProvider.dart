@@ -7,8 +7,11 @@ import '../../core/services/internship_services.dart';
 class InternshipProvider with ChangeNotifier {
   List<Job> get internship => _internship;
   List<Job> _internship = [];
+  bool isLoading = true;
 
   void fetchInternship() async {
     _internship = await SearchService().fetchSearchResults();
+    isLoading = false;
+    notifyListeners();
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:internshala/data/providers/MainHomeProvider.dart';
+import 'package:internshala/main.dart';
 import 'package:internshala/presentation/themes/colors.dart';
 import 'package:provider/provider.dart';
 
@@ -9,9 +10,11 @@ class CustomBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    screenHeight = MediaQuery.of(context).size.height;
     return Consumer<MainHomeProvider>(
       builder: (context, mainHomeProvider, child) {
         return BottomNavigationBar(
+          backgroundColor: AppColors.white,
           currentIndex: mainHomeProvider.currentIndex,
           selectedItemColor: AppColors.primaryBlue,
           selectedLabelStyle:
@@ -28,8 +31,8 @@ class CustomBottomBar extends StatelessWidget {
                 mainHomeProvider.currentIndex == 0
                     ? "assets/images/icons/home_fill.svg"
                     : "assets/images/icons/home_unfill.svg",
-                height: 20,
-                width: 20,
+                height: screenHeight * 0.027,
+                width: screenHeight * 0.027,
               ),
               label: 'Home',
             ),
@@ -38,15 +41,18 @@ class CustomBottomBar extends StatelessWidget {
                 mainHomeProvider.currentIndex == 1
                     ? "assets/images/icons/send_fill.svg"
                     : "assets/images/icons/send_unfill.svg",
-                height: 20,
-                width: 20,
+                height: screenHeight * 0.027,
+                width: screenHeight * 0.027,
               ),
               label: 'Internships',
             ),
             BottomNavigationBarItem(
               icon: mainHomeProvider.currentIndex == 2
                   ? Icon(Icons.work)
-                  : Icon(Icons.work_outline),
+                  : Icon(
+                      Icons.work_outline,
+                      color: AppColors.grey,
+                    ),
               label: 'Jobs',
             ),
             BottomNavigationBarItem(
@@ -54,8 +60,8 @@ class CustomBottomBar extends StatelessWidget {
                 mainHomeProvider.currentIndex == 3
                     ? "assets/images/icons/clubs_fill.svg"
                     : "assets/images/icons/clubs_unfill.svg",
-                height: 20,
-                width: 20,
+                height: screenHeight * 0.027,
+                width: screenHeight * 0.027,
               ),
               label: 'Clubs',
             ),
@@ -64,8 +70,8 @@ class CustomBottomBar extends StatelessWidget {
                 mainHomeProvider.currentIndex == 4
                     ? "assets/images/icons/course_fill.svg"
                     : "assets/images/icons/course_unfill.svg",
-                height: 20,
-                width: 20,
+                height: screenHeight * 0.027,
+                width: screenHeight * 0.027,
               ),
               label: 'Courses',
             ),

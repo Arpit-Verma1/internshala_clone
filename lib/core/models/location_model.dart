@@ -14,7 +14,6 @@ class Location {
   });
 
   factory Location.fromJson(Map<String, dynamic> json) {
-
     return Location(
       string: json['string'] ?? "",
       link: json['link'] ?? "",

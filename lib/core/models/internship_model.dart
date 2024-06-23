@@ -338,7 +338,6 @@ class Job {
       );
     } catch (e) {
       print('Error parsing Job: $e');
-      // Handle or rethrow the exception as needed
       throw Exception('Error parsing Job: $e');
     }
   }

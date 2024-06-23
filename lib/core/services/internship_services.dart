@@ -9,7 +9,6 @@ class SearchService {
   Future<List<Job>> fetchSearchResults() async {
     try {
       final response = await http.get(Uri.parse('$apiUrl'));
-      print("Response status code: ${response.statusCode}");
 
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body);
