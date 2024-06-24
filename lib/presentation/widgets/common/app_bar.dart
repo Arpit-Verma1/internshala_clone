@@ -55,55 +55,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           color: AppColors.black,
         ),
       ],
-      bottom: PreferredSize(
-        preferredSize: Size.fromHeight(screenHeight * 0.08),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Center(
-              child: Container(
-                width: screenWidth * 0.22,
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.primaryBlue),
-                  borderRadius: BorderRadius.circular(screenHeight * 0.03),
-                ),
-                padding: EdgeInsets.symmetric(vertical: screenWidth * 0.01),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.filter_alt_outlined,
-                      color: AppColors.primaryBlue,
-                      size: screenHeight * 0.02,
-                    ),
-                    // SizedBox(width: screenWidth * 0.01),
-                    Text(
-                      'Filters',
-                      style: TextStyle(
-                        fontSize: screenHeight * 0.02,
-                        color: AppColors.primaryBlue,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: screenHeight * 0.01),
-            if (internships.isNotEmpty)
-              Text('${internships.length} total internships',
-                  style: TextStyle(
-                    fontSize: screenHeight * 0.015,
-                    color: AppColors.black,
-                  )),
-            Divider(
-              color: AppColors.grey.withOpacity(0.8),
-            ),
-          ],
-        ),
-      ),
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight + 80);
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }

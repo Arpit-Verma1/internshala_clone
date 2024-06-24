@@ -6,6 +6,7 @@ import 'package:internshala/presentation/widgets/common/app_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/models/internship_model.dart';
+import '../widgets/filterButton.dart';
 import '../widgets/internshipCard.dart';
 
 class InternshipScreen extends StatefulWidget {
@@ -40,22 +41,30 @@ class _InternshipScreenState extends State<InternshipScreen> {
             );
           } else {
             List<Job> internships = internshipProvider.internship;
-            return ListView.separated(
-              itemBuilder: (context, index) {
-                return InternshipCard(
-                  index: index,
-                );
-              },
-              separatorBuilder: (context, index) => Container(
-                height: screenHeight * 0.012,
-                decoration: BoxDecoration(
-                  color: AppColors.lightGrey,
-                  border: Border.all(
-                    color: AppColors.grey.withOpacity(0.6),
+            return Column(
+              children: [
+                FilterButton(),
+                Expanded(
+                  flex: 1,
+                  child: ListView.separated(
+                    itemBuilder: (context, index) {
+                      return InternshipCard(
+                        index: index,
+                      );
+                    },
+                    separatorBuilder: (context, index) => Container(
+                      height: screenHeight * 0.012,
+                      decoration: BoxDecoration(
+                        color: AppColors.lightGrey,
+                        border: Border.all(
+                          color: AppColors.grey.withOpacity(0.6),
+                        ),
+                      ),
+                    ),
+                    itemCount: internships.length,
                   ),
                 ),
-              ),
-              itemCount: internships.length,
+              ],
             );
           }
         },

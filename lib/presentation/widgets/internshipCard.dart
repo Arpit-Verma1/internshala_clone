@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:internshala/main.dart';
 import 'package:internshala/presentation/themes/colors.dart';
+import 'package:internshala/presentation/widgets/common/customElevatedButton.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../data/providers/internshipProvider.dart';
@@ -172,24 +173,7 @@ class InternshipCard extends StatelessWidget {
                     'View Detials',
                     style: TextStyle(color: AppColors.primaryBlue),
                   )),
-              InkWell(
-                onTap: () {},
-                child: Container(
-                    width: screenWidth * 0.28,
-                    decoration: BoxDecoration(
-                        color: AppColors.primaryBlue,
-                        borderRadius:
-                            BorderRadius.circular(screenHeight * 0.005)),
-                    padding: EdgeInsets.symmetric(
-                        vertical: screenHeight * 0.01,
-                        horizontal: screenWidth * 0.03),
-                    child: Center(
-                      child: Text(
-                        'Apply Now',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    )),
-              )
+              CustomElevatedButton1(buttonText: 'Apply Now', onPressed: () {}),
             ],
           )
         ],
