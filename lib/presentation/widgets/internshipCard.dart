@@ -102,7 +102,7 @@ class InternshipCard extends StatelessWidget {
               Row(
                 children: [
                   Icon(Icons.calendar_today,
-                      color: AppColors.darkgrey, size: screenHeight * 0.021),
+                      color: AppColors.lightGrey, size: screenHeight * 0.021),
                   Text(internship.duration)
                 ],
               )

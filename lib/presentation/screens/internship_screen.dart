@@ -40,7 +40,7 @@ class _InternshipScreenState extends State<InternshipScreen> {
               )),
             );
           } else {
-            List<Job> internships = internshipProvider.internship;
+            List<Internship> internships = internshipProvider.internship;
             return Column(
               children: [
                 FilterButton(),

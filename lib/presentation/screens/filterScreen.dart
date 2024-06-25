@@ -8,12 +8,29 @@ import 'package:internshala/presentation/widgets/common/customDropDown.dart';
 import 'package:internshala/presentation/widgets/common/customTextField.dart';
 import 'package:internshala/presentation/widgets/common/priceButton.dart';
 import 'package:internshala/presentation/widgets/common/richTextCard.dart';
+import 'package:provider/provider.dart';
 
+import '../../data/providers/internshipProvider.dart';
 import '../themes/colors.dart';
 import '../widgets/common/customElevatedButton2.dart';
 
-class FilterScreen extends StatelessWidget {
+class FilterScreen extends StatefulWidget {
   const FilterScreen({super.key});
+
+  @override
+  State<FilterScreen> createState() => _FilterScreenState();
+}
+
+class _FilterScreenState extends State<FilterScreen> {
+  void addFilter(String filter, dynamic value) {
+    Provider.of<InternshipProvider>(context, listen: false)
+        .addFilterOption(filter, value);
+  }
+
+  void removeFilter(String filter) {
+    Provider.of<InternshipProvider>(context, listen: false)
+        .removeFilterOption(filter);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +51,10 @@ class FilterScreen extends StatelessWidget {
               Expanded(
                   flex: 1,
                   child: CustomElevatedButton1(
-                      buttonText: 'Apply', onPressed: () {})),
+                      buttonText: 'Apply',
+                      onPressed: () {
+                        Navigator.pop(context);
+                      })),
             ],
           ),
         ),
@@ -80,7 +100,7 @@ class FilterScreen extends StatelessWidget {
                   child: GridView.builder(
                       itemCount: 5,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          childAspectRatio: 2.8,
+                          childAspectRatio: 2.7,
                           mainAxisSpacing:
                               screenHeight * 0.02, // spacing between rows
                           crossAxisSpacing: screenWidth * 0.01,

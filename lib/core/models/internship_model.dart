@@ -6,7 +6,7 @@ import 'application_status_model.dart';
 import 'label_model.dart';
 import 'location_model.dart';
 
-class Job {
+class Internship {
   final int id;
   final String title;
   final String employmentType;
@@ -80,7 +80,7 @@ class Job {
   final bool toShowCoverLetter;
   final String officeDays;
 
-  Job({
+  Internship({
     required this.id,
     required this.title,
     required this.employmentType,
@@ -155,7 +155,7 @@ class Job {
     required this.officeDays,
   });
 
-  factory Job.fromJson(Map<String, dynamic> json) {
+  factory Internship.fromJson(Map<String, dynamic> json) {
     try {
       int id = json['id'] ?? 0;
       String title = json['title'] ?? '';
@@ -262,7 +262,7 @@ class Job {
       bool toShowCoverLetter = json['to_show_cover_letter'] ?? false;
       String officeDays = json['office_days'] ?? '';
 
-      return Job(
+      return Internship(
         id: id,
         title: title,
         employmentType: employmentType,
@@ -340,5 +340,82 @@ class Job {
       print('Error parsing Job: $e');
       throw Exception('Error parsing Job: $e');
     }
+  }
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'employmentType': employmentType,
+      'applicationStatusMessage': applicationStatusMessage,
+      'jobTitle': jobTitle,
+      'workFromHome': workFromHome,
+      'segment': segment,
+      'segmentLabelValue': segmentLabelValue,
+      'internshipTypeLabelValue': internshipTypeLabelValue,
+      'jobSegments': jobSegments,
+      'companyName': companyName,
+      'companyUrl': companyUrl,
+      'isPremium': isPremium,
+      'isPremiumInternship': isPremiumInternship,
+      'employerName': employerName,
+      'companyLogo': companyLogo,
+      'type': type,
+      'url': url,
+      'isInternChallenge': isInternChallenge,
+      'isExternal': isExternal,
+      'isActive': isActive,
+      'expiresAt': expiresAt?.toIso8601String(),
+      'closedAt': closedAt,
+      'profileName': profileName,
+      'partTime': partTime,
+      'startDate': startDate,
+      'duration': duration,
+      'stipend': stipend,
+      'salary': salary,
+      'jobExperience': jobExperience,
+      'experience': experience,
+      'postedOn': postedOn?.toIso8601String(),
+      'applicationDeadline': applicationDeadline,
+      'expiringIn': expiringIn,
+      'postedByLabel': postedByLabel,
+      'postedByLabelType': postedByLabelType,
+      'locationNames': locationNames,
+      'locations': locations.map((location) => location).toList(),
+      'startDateComparisonFormat': startDateComparisonFormat?.toIso8601String(),
+      'startDate1': startDate1?.toIso8601String(),
+      'startDate2': startDate2?.toIso8601String(),
+      'isPpo': isPpo,
+      'isPpoSalaryDisclosed': isPpoSalaryDisclosed,
+      'ppoSalary': ppoSalary,
+      'ppoSalary2': ppoSalary2,
+      'ppoLabelValue': ppoLabelValue,
+      'toShowExtraLabel': toShowExtraLabel,
+      'extraLabelValue': extraLabelValue,
+      'isExtraLabelBlack': isExtraLabelBlack,
+      'campaignNames': campaignNames,
+      'campaignName': campaignName,
+      'toShowInSearch': toShowInSearch,
+      'campaignUrl': campaignUrl,
+      'campaignStartDateTime': campaignStartDateTime?.toIso8601String(),
+      'campaignLaunchDateTime': campaignLaunchDateTime?.toIso8601String(),
+      'campaignEarlyAccessStartDateTime':
+          campaignEarlyAccessStartDateTime?.toIso8601String(),
+      'campaignEndDateTime': campaignEndDateTime?.toIso8601String(),
+      'labels': labels.map((label) => label).toList(),
+      'labelsApp': labelsApp,
+      'labelsAppInCard': labelsAppInCard,
+      'isCovidWfhSelected': isCovidWfhSelected,
+      'toShowCardMessage': toShowCardMessage,
+      'message': message,
+      'isApplicationCappingEnabled': isApplicationCappingEnabled,
+      'applicationCappingMessage': applicationCappingMessage,
+      'overrideMetaDetails': overrideMetaDetails,
+      'eligibleForEasyApply': eligibleForEasyApply,
+      'eligibleForB2bApplyNow': eligibleForB2bApplyNow,
+      'toShowB2bLabel': toShowB2bLabel,
+      'isInternationalJob': isInternationalJob,
+      'toShowCoverLetter': toShowCoverLetter,
+      'officeDays': officeDays,
+    };
   }
 }
