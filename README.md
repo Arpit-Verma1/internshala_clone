@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 # Internshala  Flutter App
 
 This Flutter application replicates the internship search page of our Android App. The app starts with a splash screen and then transitions to a search page that displays a list of internships fetched from the provided API.
@@ -73,4 +71,3 @@ The application starts from `main.dart` file which initializes the app and sets 
 - **themes:** Theme and color definitions.
 - **widgets:** Reusable UI components.
 - **utils:** Utility and helper functions.
->>>>>>> e54a4fa595aca6751fc008f405c405002d78cbfc
