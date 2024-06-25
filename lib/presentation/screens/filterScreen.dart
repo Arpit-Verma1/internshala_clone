@@ -110,7 +110,7 @@ class _FilterScreenState extends State<FilterScreen> {
                             buttonText: '\u20B9 ${(index + 1) * 2}' + '000');
                       }),
                 ),
-                Text('STARTING FROM OR AFTER'),
+                Text('STARTING FROM (OR AFTER)'),
                 CustomTextField(
                     controller: _controller, hintText: 'Choose Date'),
                 CustomDropDown(
